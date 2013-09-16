@@ -17,18 +17,52 @@ public class App {
 
 //        final BCastService bCastService = new BCastService();
 
-
-        get(new Route("/subscribe") {
+        // this url might not match the end-api. we will evolve the url as more
+        // information comes in.
+        get(new Route("/subscribe/:id") {
 
             @Override
             public Object handle(Request request, Response response) {
-                String id = request.queryParams("id");
+                String id = request.params("id");
 
 //                Broadcaster broadcaster = broadcasterFactory.lookup(id, true);
 //                BCastToken bCastToken = new BCastToken();
 //                bCastService.addToken(bCastToken);
 
-                return "Id is " + id;
+                return "Subscribed to channel: " + id;
+            }
+        });
+
+        get(new Route("/unsubscribe/:id") {
+
+            @Override
+            public Object handle(Request request, Response response) {
+                String id = request.params("id");
+                return "Unsubscribed to channel: " + id;
+            }
+        });
+
+
+
+        get(new Route("/publish/:id/:message") {
+           public Object handle(Request request, Response response) {
+               return "published message.";
+           }
+        });
+
+
+
+        get(new Route("/info") {
+            public Object handle(Request request, Response response) {
+              return "Info about registered channels";
+            }
+        });
+
+
+        get(new Route("/info/:id") {
+            public Object handle(Request request, Response response) {
+                String id = request.params(":id");
+                return "Info about channel " + id;
             }
         });
 
