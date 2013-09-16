@@ -1,4 +1,4 @@
-package com.betgenius.spike;
+package com.github.stefanliebenberg;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

@@ -1,4 +1,4 @@
-package com.betgenius.spike;
+package com.github.stefanliebenberg;
 
 //import org.atmosphere.cpr.Broadcaster;
 //import org.atmosphere.cpr.BroadcasterFactory;
@@ -15,6 +15,8 @@ public class App {
 //        final BroadcasterFactory broadcasterFactory = new DefaultBroadcasterFactory();
 
 //        final BCastService bCastService = new BCastService();
+
+        final Echo echo = new Echo();
 
         // this url might not match the end-api. we will evolve the url as more
         // information comes in.
@@ -44,9 +46,10 @@ public class App {
 
 
         get(new Route("/publish/:id/:message") {
-           public Object handle(Request request, Response response) {
-               return "published message.";
-           }
+            public Object handle(Request request, Response response) {
+                Message message = new Message(request.params(":message"));
+                return "published message.";
+            }
         });
 
 
